@@ -3,17 +3,12 @@ var router = express.Router();
 var Campground = require('../models/campground');
 var middleware = require('../middleware');
 
+const db = require("../db");
+
 router.get("/", function (req, res) {
-    // Get all campgrounds from DB
-    Campground.find({}, function (err, allCampgrounds) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("campgrounds/index", {
-                campgrounds: allCampgrounds,
-                currentUser: req.user
-            });
-        }
+    res.render("campgrounds/index", {
+      campgrounds: db,
+      currentUser: req.user,
     });
 });
 
